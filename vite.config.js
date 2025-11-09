@@ -4,6 +4,10 @@ export default defineConfig({
   server: {
     host: true
   },
-  // Le decimos a Vite que la carpeta 'public' es ahora la raíz del proyecto
-  root: 'public' 
+  // Le decimos a Vite que la raíz del proyecto es 'public'
+  root: 'public',
+  // Le decimos a Vite que la carpeta de salida 'dist' debe estar un nivel por encima de la raíz
+  build: {
+    outDir: '../dist'
+  }
 });
