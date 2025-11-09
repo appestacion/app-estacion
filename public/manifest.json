@@ -1,6 +1,6 @@
 {
   "name": "App Scaner de Tickets",
-  "short_name": "Scaner Tickets",
+  "short_name": "Scaner  Tickets",
   "description": "Una aplicación para escanear y guardar datos de tickets de estaciones de servicio.",
   "start_url": "/",
   "display": "standalone",
