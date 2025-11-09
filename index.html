@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>App Estación de Servicio</title>
+  <link rel="stylesheet" href="/src/styles.css" />
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#1a73e8" />
-  <link rel="stylesheet" href="/src/styles.css" />
 </head>
 <body>
   <main>
-    <h1>Scaner de Tickets</h1>
+    <h1>Escáner de Tickets</h1>
     <p>Elige qué buscar y luego toma una foto al ticket.</p>
     
     <div id="config-container">
@@ -23,6 +23,8 @@
     </div>
 
     <button id="photo-button">Sacar Foto al Ticket</button>
+    <!-- NUEVO: Botón para instalar la PWA -->
+    <button id="install-button" style="display: none;">Instalar App</button>
 
     <div id="result-container" style="display: none;">
       <h2>Resultado:</h2>

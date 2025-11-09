@@ -17,6 +17,7 @@ const db = getFirestore(app);
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // --- Referencias a los elementos de la página ---
   const photoButton = document.getElementById('photo-button');
   const resultContainer = document.getElementById('result-container');
   const ticketImage = document.getElementById('ticket-image');
@@ -29,11 +30,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const pointOfSaleSpan = document.getElementById('point-of-sale');
   const saveButton = document.getElementById('save-button');
 
+  // --- NUEVO: Lógica para el botón de instalación de la PWA ---
+  let deferredPrompt;
+  const installButton = document.getElementById('install-button');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installButton.style.display = 'block';
+  });
+
+  installButton.addEventListener('click', async () => {
+    if (!deferredPrompt) {
+      return;
+    }
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log(`User response to the install prompt: ${outcome}`);
+    deferredPrompt = null;
+    installButton.style.display = 'none';
+  });
+
+  // --- La Magia del Botón de la Foto (Versión Simple) ---
   photoButton.addEventListener('click', () => {
     const input = document.createElement('input');
     input.type = 'file';
     input.accept = 'image/*';
-    input.capture = 'environment';
+    // CAMBIO: Se elimina la línea 'input.capture' para dar opción a cámara/galería.
+    // input.capture = 'environment';
 
     input.addEventListener('change', async (event) => {
       const file = event.target.files[0];
@@ -89,24 +113,20 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
         
-        // --- BÚSQUEDA DE LITROS (VERSIÓN CORREGIDA) ---
         if (document.getElementById('search-liters').checked) {
           let litersFound = false;
-          // Opción 1: Formato "Litros 15.5"
           const litersPattern1 = /([lL]itros?)\s*(\d+[.,]\d+)/;
           const litersMatch1 = text.match(litersPattern1);
           if (litersMatch1) {
             litersSpan.textContent = litersMatch1[2].replace('.', ',');
             litersFound = true;
           } else {
-            // Opción 2: Formato "10 LTO"
             const litersPattern2 = /(\d+[.,]?\d*)\s*[lL][tT][oO]/;
             const litersMatch2 = text.match(litersPattern2);
             if (litersMatch2) {
               litersSpan.textContent = litersMatch2[1].replace('.', ',');
               litersFound = true;
             } else {
-              // Opción 3: NUEVA TRAMPA para "10 LTS"
               const litersPattern3 = /(\d+)\s*[lL][tT][sS]/;
               const litersMatch3 = text.match(litersPattern3);
               if (litersMatch3) {
@@ -126,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
     input.click();
   });
 
+  // --- Lógica del Botón de Guardar ---
   saveButton.addEventListener('click', async () => {
     saveButton.disabled = true; saveButton.textContent = 'Guardando...';
     const ticketData = {
