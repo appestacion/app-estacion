@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Estación de Servicio</title>
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#1a73e8" />
+  <link rel="stylesheet" href="/src/styles.css" />
+</head>
+<body>
+  <main>
+    <h1>Scaner de Tickets</h1>
+    <p>Elige qué buscar y luego toma una foto al ticket.</p>
+    
+    <div id="config-container">
+      <h3>Configuración de Búsqueda:</h3>
+      <label><input type="checkbox" id="search-pos" checked> Punto de Venta (Banco)</label>
+      <label><input type="checkbox" id="search-date" checked> Fecha</label>
+      <label><input type="checkbox" id="search-time" checked> Hora</label>
+      <label><input type="checkbox" id="search-liters" checked> Litros</label>
+      <label><input type="checkbox" id="search-amount" checked> Monto (Bs.)</label>
+    </div>
+
+    <button id="photo-button">Sacar Foto al Ticket</button>
+
+    <div id="result-container" style="display: none;">
+      <h2>Resultado:</h2>
+      <img id="ticket-image" src="#" alt="Foto del ticket">
+      <p><strong>Texto Leído:</strong> <span id="extracted-text"></span></p>
+      
+      <p><strong>Punto de Venta:</strong> <span id="point-of-sale">No seleccionado</span></p>
+      <p><strong>Fecha:</strong> <span id="date">No seleccionado</span></p>
+      <p><strong>Hora:</strong> <span id="time">No seleccionado</span></p>
+      <p><strong>Litros:</strong> <span id="liters">No seleccionado</span></p>
+      <p><strong>Monto:</strong> <span id="amount">No seleccionado</span></p>
+      
+      <button id="save-button" style="display: none;">Guardar en la Nube</button>
+    </div>
+  </main>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
