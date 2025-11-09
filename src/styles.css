@@ -96,3 +96,13 @@ p {
   color: #495057;
   cursor: pointer;
 }
+
+.photo-buttons-container {
+  display: flex;
+  gap: 10px; /* Espacio entre los botones */
+  margin-top: 20px;
+}
+
+.photo-buttons-container button {
+  flex: 1; /* Hace que los botones ocupen el mismo espacio */
+}
