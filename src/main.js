@@ -1,5 +1,5 @@
-// import Tesseract from 'tesseract.js';
-// import { initializeApp } from 'firebase/app';
+import Tesseract from 'tesseract.js';
+import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
 // --- PEGA AQUÍ TUS LLAVES DE FIREBASE ---

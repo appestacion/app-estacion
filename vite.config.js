@@ -4,6 +4,6 @@ export default defineConfig({
   server: {
     host: true
   },
-  // Le decimos a Vite dónde están nuestros archivos públicos
-  publicDir: 'public' 
+  // Le decimos a Vite que la carpeta 'public' es ahora la raíz del proyecto
+  root: 'public' 
 });
